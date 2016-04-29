@@ -7,8 +7,9 @@ os.putenv('COPYFILE_DISABLE', 'true')
 
 # Prevent distutils from complaining that a standard file wasn't found
 README = os.path.join(os.path.dirname(__file__), 'README')
-if not os.path.exists(README):
-    os.symlink(README + '.rst', README)
+if os.path.exists(README):
+    os.remove(README)
+os.symlink(README + '.rst', README)
 
 description = ('Django database backend for Microsoft SQL Server '
                'that works on non-Windows systems.')
